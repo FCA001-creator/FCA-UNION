@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Registration creates a zero-balance account and gates dashboard access",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "registration",
+      "authentication gate",
+      "zero initial balance"
+    ],
+    "description": "Verifies an unauthenticated visitor must register or sign in before seeing account data, and a new account starts at zero.",
+    "steps": [
+      "Open the site logged out",
+      "Choose Create account and submit valid new details",
+      "Confirm the dashboard opens and available balance is $0.00",
+      "Log out and confirm the login page is shown"
+    ],
+    "expected": "New account starts at $0.00 and the dashboard is not visible while logged out."
+  },
+  {
+    "name": "Member cannot add funds or manage accounts",
+    "viewport": "desktop",
+    "covers": [
+      "member authorization boundaries",
+      "add funds restrictions"
+    ],
+    "description": "Verifies ordinary members see the add-funds contact path rather than admin credit controls.",
+    "steps": [
+      "Register a normal member account",
+      "Open Add Funds",
+      "Inspect available controls"
+    ],
+    "expected": "The member sees customer support information and no form to credit balances."
+  },
+  {
+    "name": "Admin can credit member and freeze or block account",
+    "viewport": "desktop",
+    "covers": [
+      "admin credit management",
+      "freeze account",
+      "block account",
+      "restore account"
+    ],
+    "description": "Verifies the admin management view exposes simulated credits and account status controls.",
+    "steps": [
+      "Sign in as administrator",
+      "Open Add Funds and credit a member",
+      "Open Members and freeze that member",
+      "Block the member and restore active status"
+    ],
+    "expected": "The member balance and status update in the local prototype and are visible in the account list."
+  },
+  {
+    "name": "Login rejects invalid credentials",
+    "viewport": "mobile",
+    "covers": [
+      "login validation",
+      "responsive authentication"
+    ],
+    "description": "Verifies invalid sign-in details do not open the dashboard on mobile.",
+    "steps": [
+      "Open the login page on mobile",
+      "Enter an unknown username and password",
+      "Submit the form"
+    ],
+    "expected": "An error appears and the dashboard remains inaccessible."
+  }
+]
